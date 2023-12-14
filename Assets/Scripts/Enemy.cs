@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     private Rigidbody enemyRb;
     private GameObject player;
+    private GameManager gameManager;
 
 
     // Start is called before the first frame update
@@ -25,4 +26,5 @@ public class Enemy : MonoBehaviour
         enemyRb.AddForce(lookDirection * speed);
         
     }
+    
 }

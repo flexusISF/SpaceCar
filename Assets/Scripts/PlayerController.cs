@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
     public float xRange = 10;
     public GameObject projectilePrefab;
     public bool hasPowerup = false;
+    public GameManager gameManager;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+       gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -40,6 +42,16 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            gameManager.GameOver();
+        }
+       
+    }
+
+
 
 
 }

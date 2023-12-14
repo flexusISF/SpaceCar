@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+ public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
     private int score;
     public TextMeshProUGUI scoreText;
-
+    public TextMeshProUGUI gameOverText;
+    public Button restartButton;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +23,25 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       while (true) { UpdateScore(1); }
+      if(Input.GetKeyDown(KeyCode.P))
+        {
+            UpdateScore(1);
+        }
     }
 
-    void UpdateScore(int scoreToAdd)
+   public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
        scoreText.text = "Score:" + score;
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
